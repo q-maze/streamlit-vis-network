@@ -1,6 +1,6 @@
 # streamlit-vis-network
 
-Streamlit component that allows you to do visualize networks using vis.js
+Streamlit component that allows you to visualize networks using vis.js
 
 ## Installation instructions
 
