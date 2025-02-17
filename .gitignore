@@ -7,9 +7,9 @@ __pycache__/
 *$py.class
 
 # Distribution / packaging
-build/
 dist/
 eggs/
+build/
 .eggs/
 *.egg-info/
 *.egg
@@ -69,3 +69,5 @@ template-reactless/**/package-lock.json
 ########################################################################
 .vscode/
 buildcontext/
+
+.venv

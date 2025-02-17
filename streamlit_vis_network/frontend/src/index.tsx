@@ -8,11 +8,12 @@ import { Edge, Network, Node as visNode } from "vis-network";
  */
 function onRender(event: Event): void {
   // Get the RenderData from the event
-  const data = (event as CustomEvent<RenderData>).detail;
-  var container = document.getElementById("vis-network-container")!;
-  // container.setAttribute("style", "width:250px;height:250px")
   // RenderData.args is the JSON dictionary of arguments sent from the
   // Python script.
+  const data = (event as CustomEvent<RenderData>).detail;
+  var container = document.getElementById("vis-network-container")!;
+  container.style.height = data.args["height"];
+  container.style.width = data.args["width"];
   // create an array with nodes
   let nodesArray: visNode[] = data.args["nodes"];
   // create an array with edges

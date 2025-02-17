@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 import streamlit.components.v1 as components
 
@@ -15,6 +15,8 @@ def streamlit_vis_network(
     nodes:List[Dict[str, Any]],
     edges:List[Dict[str, Any]],
     options:Dict[str, Any]={},
+    height:Optional[int]=None,
+    width:Optional[int]=None,
     key:Union[str, None]=None
 ) -> Union[str, None]:
     """Create a new instance of the vis.js network visualization.
@@ -25,6 +27,10 @@ def streamlit_vis_network(
         options: Configuration settings for the vis.js network visualization.
             See https://visjs.github.io/vis-network/docs/network/#options for more
             information. Defaults to None.
+        height: Desired height of the container expressed in pixels. If not supplied
+            height is set to parent container height.
+        width: Desired width of the container expressed in pixels. If not supplied
+            width is set to parent container width.
         key: An optional string or integer to use as the unique key for the widget.
             If this is omitted, a key will be generated for the widget based on its
             content. No two widgets may have the same key. Defaults to None.
@@ -45,4 +51,20 @@ def streamlit_vis_network(
     >>>
     >>> st.write(f"Selected node: {selected_node}")
     """
-    return _component_func(nodes=nodes, edges=edges, options=options, key=key)
+    if height:
+        _height = f"{height}px"
+    else:
+        _height = "auto"
+    if width:
+        _width = f"{width}px"
+    else:
+        _width = "auto"
+
+    return _component_func(
+        nodes=nodes,
+        edges=edges,
+        options=options,
+        height=_height,
+        width=_width,
+        key=key
+    )
