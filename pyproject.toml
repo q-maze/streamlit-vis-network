@@ -1,7 +1,7 @@
 [project]
 name = "streamlit-vis-network"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.1"
+description = "Network graph visualization in Streamlit using vis.js"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
