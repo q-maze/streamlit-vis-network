@@ -35,11 +35,24 @@ function onRender(event: Event): void {
           easingFunction: "easeInOutQuad",
         },
       });
-      Streamlit.setComponentValue(selectedNodeId);
+      let component_value: [string, any];
+      component_value = ["node", selectedNodeId];
+      Streamlit.setComponentValue(component_value);
     }
   });
   network.on("deselectNode", () => {
-    Streamlit.setComponentValue(null); // Pass null when no node is selected
+    Streamlit.setComponentValue(null); // Pass null when node is deselected
+  });
+  network.on("selectEdge", (params: any) => {
+    if (params.edges.length > 0) {
+      const selectedEdgeId = params.edges[0];
+      let component_value: [string, any];
+      component_value = ["node", selectedEdgeId];
+      Streamlit.setComponentValue(component_value);
+    }
+  });
+  network.on("deselectEdge", () => {
+    Streamlit.setComponentValue(null); // Pass null when edge is deselected
   });
   network.redraw();
   Streamlit.setFrameHeight();
