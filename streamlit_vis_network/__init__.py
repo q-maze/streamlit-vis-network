@@ -18,7 +18,7 @@ def streamlit_vis_network(
     height:Optional[int]=None,
     width:Optional[int]=None,
     key:Union[str, None]=None
-) -> Union[str, None]:
+) -> Union[List[List[str]], None]:
     """Create a new instance of the vis.js network visualization.
 
     Args:
