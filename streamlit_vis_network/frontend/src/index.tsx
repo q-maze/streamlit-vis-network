@@ -24,7 +24,7 @@ function onRender(event: Event): void {
     edges: edgesArray,
   };
   var network = new Network(container, node_edge_data, data.args["options"]);
-  let component_value: [any, any];
+  let component_value: [any, any, any];
   // If a node is selected, pass the selected node id back to Streamlit
   network.on("selectNode", (params: any) => {
     if (params.nodes.length > 0) {
@@ -40,7 +40,7 @@ function onRender(event: Event): void {
       params.edges.forEach((edgeId: IdType) => {
         edges.push(network.getConnectedNodes(edgeId));
       });
-      component_value = [params.nodes, edges];
+      component_value = [params.nodes, edges, network.getPositions()];
       Streamlit.setComponentValue(component_value);
     }
   });
@@ -49,7 +49,7 @@ function onRender(event: Event): void {
     params.edges.forEach((edgeId: IdType) => {
       edges.push(network.getConnectedNodes(edgeId));
     });
-    component_value = [params.nodes, edges];
+    component_value = [params.nodes, edges, network.getPositions()];
     Streamlit.setComponentValue(component_value); // Pass null when node is deselected
   });
   network.on("selectEdge", (params: any) => {
@@ -57,7 +57,7 @@ function onRender(event: Event): void {
       Streamlit.setComponentValue(null);
       const selectedEdgeId = params.edges[0];
       let edges: Array<any> = [network.getConnectedNodes(selectedEdgeId)];
-      component_value = [params.nodes, edges];
+      component_value = [params.nodes, edges, network.getPositions()];
       Streamlit.setComponentValue(component_value);
     }
   });
@@ -66,7 +66,7 @@ function onRender(event: Event): void {
     params.edges.forEach((edgeId: IdType) => {
       edges.push(network.getConnectedNodes(edgeId));
     });
-    component_value = [params.nodes, edges];
+    component_value = [params.nodes, edges, network.getPositions()];
     Streamlit.setComponentValue(component_value); // Pass null when edge is deselected
   });
   network.redraw();
